@@ -1,0 +1,13 @@
+server:
+  port: ${randomServerPort.value[1000,2000]}
+spring:
+  application:
+    name: order-service
+  thymeleaf:
+    cache: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka
+  instance:
+    instance-id: ${spring.application.name}:${randomServerPort.value[1000,2000]}

@@ -1,0 +1,10 @@
+server:
+  port: 8001
+eureka:
+  instance:
+    hostname: eureka-server
+  client:
+    register-with-eureka: false #不向自己注册服务
+    fetch-registry: false # 不对自己检索服务
+    service-url:
+      defaultZone : http://${eureka.instance.hostname}:${server.port}/eureka
