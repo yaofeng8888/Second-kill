@@ -1,8 +1,8 @@
 server:
-  port: ${randomServerPort.value[1000,2000]}
+  port: ${randomServerPort.value[2501,3000]}
 spring:
   application:
-    name: order-service
+    name: saveorder-service
   thymeleaf:
     cache: false
   datasource:
@@ -11,39 +11,31 @@ spring:
     url: jdbc:mysql://localhost:3306/secondkill?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password:
-      #    æœ€å¤§æ´»è·ƒæ•°
+      #    ×î´ó»îÔ¾Êı
       maxActive: 20
-      #  åˆå§‹åŒ–æ•°é‡
+      #  ³õÊ¼»¯ÊıÁ¿
       InitialSize: 1
-      #æœ€å¤§è¿æ¥ç­‰å¾…è¶…æ—¶æ—¶é—´:
+      #×î´óÁ¬½ÓµÈ´ı³¬Ê±Ê±¼ä:
       maxWait: 60000
-      #æ¶ˆæ¯é˜Ÿåˆ—é…ç½®
+      #ÏûÏ¢¶ÓÁĞÅäÖÃ  Ïû·Ñ¶Ë
   rabbitmq:
     addresses: 192.168.1.100:5672
     username: user
     password: root
     virtual-host: /
     connection-timeout: 15000
-    publisher-returns: true
-    publisher-confirms: true
-    template:
-      mandatory: true
-    http:
-      encoding:
-        charset: utf-8
-
-  #redis åŸºæœ¬é…ç½®
-  redis:
-    password: root
-    host: 192.168.1.100
-    port: 6379
-
+    listener:
+      simple:
+        concurrency: 5
+        acknowledge-mode: manual
+        max-concurrency: 10
+        prefetch: 1
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8001/eureka
   instance:
-    instance-id: ${spring.application.name}:${randomServerPort.value[1000,2000]}
+    instance-id: ${spring.application.name}:${randomServerPort.value[2501,3000]}
 mybatis:
   mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.yf.springorder.model
+  type-aliases-package: com.yf.springsaveorder.model
