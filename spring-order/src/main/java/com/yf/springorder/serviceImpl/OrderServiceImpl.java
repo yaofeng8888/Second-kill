@@ -3,6 +3,7 @@ package com.yf.springorder.serviceImpl;
 import com.yf.springorder.mapper.IOrder;
 import com.yf.springorder.model.Order;
 import com.yf.springorder.service.IOrderService;
+import com.yf.springorder.utils.RedisClient;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,12 @@ public class OrderServiceImpl implements IOrderService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private RedisClient redisClient;
 
     public void decrByRedis(String watchkeys,Order order){
-        Jedis jedis = new Jedis("192.168.1.100", 6379);
-        Long aLong = jedis.decrBy(watchkeys, 1);
-        int valint = aLong.intValue();
+        Long decr = redisClient.decr(watchkeys, 1);
+        int valint = decr.intValue();
         if (valint>=0&&valint<=500){
             CorrelationData correlationData = new CorrelationData();
             correlationData.setId(order.getMessageId());

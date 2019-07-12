@@ -37,6 +37,16 @@ spring:
     password: root
     host: 192.168.1.100
     port: 6379
+    database: 0 #redis 数据库索引
+    jedis:
+      pool:
+        max-active: 8  #连接池最大连接数
+        max-wait: -1 #连接池最大组赛时间  负数表示没有限制
+        max-idle: 8 #连接池最大空闲数
+        min-idle: 0 #连接池最下空闲数
+    timeout: 0  #连接超时时间(毫秒)
+  session:
+    store-type: none  #spring-session 使用
 
 eureka:
   client:
