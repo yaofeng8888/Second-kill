@@ -11,13 +11,13 @@ spring:
     url: jdbc:mysql://localhost:3306/secondkill?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password:
-      #    ×î´ó»îÔ¾Êı
+      #    æœ€å¤§æ´»è·ƒæ•°
       maxActive: 20
-      #  ³õÊ¼»¯ÊıÁ¿
+      #  åˆå§‹åŒ–æ•°é‡
       InitialSize: 1
-      #×î´óÁ¬½ÓµÈ´ı³¬Ê±Ê±¼ä:
+      #æœ€å¤§è¿æ¥ç­‰å¾…è¶…æ—¶æ—¶é—´:
       maxWait: 60000
-      #ÏûÏ¢¶ÓÁĞÅäÖÃ  Ïû·Ñ¶Ë
+      #æ¶ˆæ¯é˜Ÿåˆ—é…ç½®  æ¶ˆè´¹ç«¯
   rabbitmq:
     addresses: 192.168.1.100:5672
     username: user
