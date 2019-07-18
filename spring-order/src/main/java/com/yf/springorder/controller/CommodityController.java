@@ -1,9 +1,7 @@
 package com.yf.springorder.controller;
 
 import com.yf.springorder.model.Order;
-import com.yf.springorder.service.ICommodtityService;
 import com.yf.springorder.service.IOrderService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
